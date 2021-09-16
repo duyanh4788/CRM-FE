@@ -20,7 +20,7 @@ class User extends Component {
   deleteUser = async (id) => {
     await axiosFetch(`${url}/${id}`, "DELETE")
       .then((result) => {
-        alert(result.status)
+        alert(result.data.status)
         this.props.deleteUserReducer(id)
       })
       .catch((err) => {
