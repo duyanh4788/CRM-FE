@@ -25,6 +25,7 @@ export const userReducer = (state = initialState, action) => {
             let index = update.findIndex(items => items._id === action.id);
             if (index !== -1) {
                 update.splice(index, 1);
+                state.dataUserById = undefined
                 state.dataUsers = update
             }
             return { ...state }
