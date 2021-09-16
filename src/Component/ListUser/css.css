@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
+.ListUser_container {
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  color: white;
+}
+body {
+  font-family: "Fira Sans", sans-serif;
+  text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+}
+/* .container {
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+} */
+.search_fi {
+  width: 0px;
+  transition: all 0.2s linear;
+  color: #252429;
+  display: none;
+  border-radius: 10px;
+}
+.ListUser_container_ul {
+  width: 100%;
+  max-height: 900px;
+  padding-left: 0;
+  overflow-x: scroll;
+}
+.ListUser_container_ul::-webkit-scrollbar-track {
+  background-color: black;
+  border-radius: 10px;
+}
+.ListUser_container_ul::-webkit-scrollbar {
+  width: 8px;
+}
+.ListUser_container_ul::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #737272;
+  border: 1px solid #000;
+}
+.ListUser_container_menu {
+  background-color: #252429;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px;
+  align-items: center;
+}
+.ListUser_container_menu_icon {
+  font-size: 15px;
+}
+.ListUser_container_menu_icon i {
+  margin: 10px 10px;
+}
+.containerr {
+  display: flex;
+  width: 90% !important;
+  margin: auto;
+}
+.User_profile {
+  background-color: #252429;
+  width: 100%;
+  height: 100vh;
+  margin-left: 80px;
+}
+.User_profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.User_profile_container {
+  width: 100%;
+  max-width: 821px;
+  margin: auto;
+}
+.User_profile_container_content {
+  background-color: white;
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.User_profile_container_content_avatar {
+  position: absolute;
+  width: 40%;
+  left: -50px;
+  height: 60%;
+}
+.User_profile_container_content_avatar img {
+  width: 100%;
+  border-radius: 20px;
+  height: 100%;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.User_profile_container_content_text {
+  /* color: #252429; */
+  position: absolute;
+  right: 10%;
+  display: flex;
+  height: 200px;
+  justify-content: flex-end;
+  width: 60%;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  align-items: center;
+}
+.User_profile_container_content_text p {
+  /* color: #252429; */
+  color: gray;
+  font-weight: 500;
+  font-size: 18px;
+}
+.User_profile_container_content_text i {
+  margin-right: 20px;
+}
+/* .User_profile_container_content_text_wheel .item {
+  width: 10px;
+  height: 10px;
+  background-color: #252429;
+  border-radius: 5px;
+  transition: all 0.2 linear;
+  margin-bottom: 40px;
+} */
+/* .User_profile_container_content_text_text {
+  animation: ani 0.7s linear 0s 1 alternate;
+} */
+.fa-share-square {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+.fa-share-square:hover {
+  color: darkblue;
+}
+@keyframes ani {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.User_profile_notifyContact {
+  background-color: white;
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.dropdown-menu {
+  inset: -30px !important;
+  transform: translate(-75px, 30px) !important;
+  min-width: 0 !important;
+}

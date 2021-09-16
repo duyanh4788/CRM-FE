@@ -1,0 +1,30 @@
+.User_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #252429;
+  margin: 10px 0px;
+  padding: 20px 10px;
+}
+.User_container_content {
+  display: flex;
+  justify-content: space-between;
+}
+.User_container_content img {
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.User_container:hover {
+  background-color: #0d6efd;
+}
+.User_name {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+.User_email {
+  color: gray;
+  margin: 0;
+}

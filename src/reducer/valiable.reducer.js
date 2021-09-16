@@ -1,0 +1,6 @@
+
+export const GET_UPDATE_USER_CRM = "GET_UPDATE_USER_CRM"
+export const GET_USER_CRM = "GET_USER_CRM"
+export const GET_USER_BYID_CRM = "GET_USER_BYID_CRM"
+export const DELETE_USER_CRM = "DELETE_USER_CRM"
+export const SEARCH_USER_CRM = "SEARCH_USER_CRM"
