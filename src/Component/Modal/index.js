@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./css.css";
 import axiosFetch from "../../axios";
+import { url } from "../../axios/domainUrl";
 export default class Modal extends Component {
   constructor(props) {
     super(props);
@@ -21,18 +22,14 @@ export default class Modal extends Component {
     this.createUser();
   };
   createUser = () => {
-    axiosFetch(
-      "https://mini-project-crm-api.herokuapp.com/api/v1/users/",
-      "POST",
-      this.state
-    )
+    axiosFetch(`${url}`, "POST", this.state)
       .then((result) => {
         alert("ADD Thành Công");
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
-        alert("ADD Không thành công");
+        console.log(err.response);
+        alert(err.response.data.message);
       });
   };
   render() {

@@ -5,6 +5,7 @@ import User from "../User";
 import ModalSendMail from "../Modal/SendMailModal";
 import { connect } from "react-redux";
 import { getDataUser_Action, searchDataUser_Action } from "../../reducer/getData.action";
+import { url } from "../../axios/domainUrl";
 
 
 class ListUser extends Component {
@@ -22,7 +23,7 @@ class ListUser extends Component {
   }
 
   fetchGetUser = async () => {
-    await axiosFetch("https://mini-project-crm-api.herokuapp.com/api/v1/users/", "GET")
+    await axiosFetch(`${url}`, "GET")
       .then((result) => {
         this.setState({ loading: false });
         this.props.getDataUser(result.data.data.users)

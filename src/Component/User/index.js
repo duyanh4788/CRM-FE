@@ -3,6 +3,7 @@ import "./css.css";
 import axiosFetch from "../../axios";
 import { connect } from "react-redux";
 import { deleteDataUser_Action, getDataUserByID_Action, getUpdateDataUser_Action } from "../../reducer/getData.action";
+import { url } from "../../axios/domainUrl";
 
 class User extends Component {
 
@@ -17,7 +18,7 @@ class User extends Component {
   };
 
   deleteUser = async (id) => {
-    await axiosFetch(`https://mini-project-crm-api.herokuapp.com/api/v1/users/${id}`, "DELETE")
+    await axiosFetch(`${url}/${id}`, "DELETE")
       .then((result) => {
         alert(result.status)
         this.props.deleteUserReducer(id)

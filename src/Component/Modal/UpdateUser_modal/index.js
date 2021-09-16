@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import axiosFetch from "../../../axios";
+import { url } from '../../../axios/domainUrl';
 import "./css.css";
 
 const ModalUser = (props) => {
@@ -35,18 +36,19 @@ const ModalUser = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUser()
+    console.log(users);
   };
 
   const updateUser = () => {
-    axiosFetch(`https://mini-project-crm-api.herokuapp.com/api/v1/users/${inforUser._id}`, "PATH", users)
+    axiosFetch(`${url}${inforUser._id}`, "PUT", users)
       .then(res => {
-        console.log(res);
         alert("ok roi do ");
         const myModal = document.getElementById("btn-close2");
         myModal.click();
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
+        alert(err.response.data.message);
       })
   }
 

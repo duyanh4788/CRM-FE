@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./css.css";
 import axiosFetch from "../../../axios";
+import { url } from "../../../axios/domainUrl";
 export default class ModalSendMail extends Component {
   constructor(props) {
     super(props);
@@ -22,22 +23,18 @@ export default class ModalSendMail extends Component {
     this.sendMailUser();
   };
   sendMailUser = () => {
-    axiosFetch(
-      "https://mini-project-crm-api.herokuapp.com/api/v1/users/sendmail",
-      "POST",
-      this.state
-    )
-      .then((result) => {
-        const myModal = document.getElementById("btn-close");
-        alert("Gửi mail Thành Công");
-        document.getElementById("myform1").reset();
-        myModal.click();
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Gửi mail Không thành công");
-        document.getElementById("myform1").reset();
-      });
+    axiosFetch(`${url}`, "POST", this.state)
+    .then((result) => {
+      const myModal = document.getElementById("btn-close");
+      alert("Gửi mail Thành Công");
+      document.getElementById("myform1").reset();
+      myModal.click();
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("Gửi mail Không thành công");
+      document.getElementById("myform1").reset();
+    });
   };
   render() {
     return (
