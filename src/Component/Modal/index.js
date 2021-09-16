@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./css.css";
 import axiosFetch from "../../axios";
 import { url } from "../../axios/domainUrl";
-export default class Modal extends Component {
+import { connect } from "react-redux";
+import { getCreatetatus_Action } from "../../reducer/getData.action";
+
+class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,8 +27,10 @@ export default class Modal extends Component {
   createUser = () => {
     axiosFetch(`${url}`, "POST", this.state)
       .then((result) => {
-        alert("ADD Thành Công");
-        window.location.reload();
+        alert(result.data.status);
+        this.props.createDataUser(result.status)
+        const myModal = document.getElementById("btn-close");
+        myModal.click();
       })
       .catch((err) => {
         console.log(err.response);
@@ -121,6 +126,7 @@ export default class Modal extends Component {
                     type="button"
                     className="btn btn-secondary"
                     data-bs-dismiss="modal"
+                    id="btn-close"
                   >
                     Close
                   </button>
@@ -136,3 +142,13 @@ export default class Modal extends Component {
     );
   }
 }
+const mapDispacthToProps = (dispacth) => {
+  return {
+    createDataUser: (data) => {
+      dispacth(getCreatetatus_Action(data))
+    },
+  }
+}
+
+
+export default connect(null, mapDispacthToProps)(Modal);

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axiosFetch from "../../../axios";
 import { url } from '../../../axios/domainUrl';
+import { getUpdateContact_Action, getUpdateStatus_Action } from '../../../reducer/getData.action';
 import "./css.css";
 
 const ModalUser = (props) => {
+
+  const dispatch = useDispatch()
 
   const inforUser = useSelector(state => {
     return state.userReducer.dataUserUpdate
@@ -36,13 +39,14 @@ const ModalUser = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUser()
-    console.log(users);
   };
 
-  const updateUser = () => {
-    axiosFetch(`${url}${inforUser._id}`, "PUT", users)
+  const updateUser = async () => {
+    await axiosFetch(`${url}${inforUser._id}`, "PUT", users)
       .then(res => {
-        alert("ok roi do ");
+        dispatch(getUpdateStatus_Action(res.status))
+        dispatch(getUpdateContact_Action(res.config.data))
+        alert(res.data.status);
         const myModal = document.getElementById("btn-close2");
         myModal.click();
       })

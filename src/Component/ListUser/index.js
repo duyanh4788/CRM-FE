@@ -4,7 +4,7 @@ import "./css.css";
 import User from "../User";
 import ModalSendMail from "../Modal/SendMailModal";
 import { connect } from "react-redux";
-import { getDataUser_Action, searchDataUser_Action } from "../../reducer/getData.action";
+import { getCreatetatus_Action, getDataUser_Action, getUpdateStatus_Action, searchDataUser_Action } from "../../reducer/getData.action";
 import { url } from "../../axios/domainUrl";
 
 
@@ -20,6 +20,18 @@ class ListUser extends Component {
 
   componentDidMount() {
     this.fetchGetUser();
+
+  }
+
+  componentDidUpdate() {
+    if (this.props.statusCodeUpdate === 200) {
+      this.fetchGetUser();
+      this.props.resetStatusCodeUpdate(0)
+    }
+    if (this.props.statusCodeCreate === 201) {
+      this.fetchGetUser();
+      this.props.resetStatusCodeCreate(0)
+    }
   }
 
   fetchGetUser = async () => {
@@ -122,7 +134,7 @@ class ListUser extends Component {
                       </p>
                       <p>
                         <i className="fas fa-home"></i>
-                        {this.props.dataUserById.address.slice(0, 40)}
+                        {this.props.dataUserById.address}
                       </p>
                       <p>
                         <i className="fas fa-business-time"></i>
@@ -151,6 +163,12 @@ const mapDispacthToProps = (dispacth) => {
     },
     searchDataUser: (data) => {
       dispacth(searchDataUser_Action(data))
+    },
+    resetStatusCodeUpdate: (data) => {
+      dispacth(getUpdateStatus_Action(data))
+    },
+    resetStatusCodeCreate: (data) => {
+      dispacth(getCreatetatus_Action(data))
     }
   }
 }
@@ -158,7 +176,9 @@ const mapDispacthToProps = (dispacth) => {
 const mapStateToProps = (state) => {
   return {
     dataUsers: state.userReducer.dataUsers,
-    dataUserById: state.userReducer.dataUserById
+    dataUserById: state.userReducer.dataUserById,
+    statusCodeUpdate: state.userReducer.statusCode,
+    statusCodeCreate: state.userReducer.statusCodeCreate
   }
 }
 
