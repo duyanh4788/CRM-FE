@@ -30,6 +30,8 @@ class Modal extends Component {
         alert(result.data.status);
         this.props.createDataUser(result.status)
         const myModal = document.getElementById("btn-close");
+        let form = document.getElementById("formContact")
+        form.reset();
         myModal.click();
       })
       .catch((err) => {
@@ -60,7 +62,7 @@ class Modal extends Component {
               />
             </div>
             <div className="modal-body">
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit} id="formContact">
                 <div className="mb-3">
                   <label
                     htmlFor="recipient-name"
@@ -149,6 +151,5 @@ const mapDispacthToProps = (dispacth) => {
     },
   }
 }
-
 
 export default connect(null, mapDispacthToProps)(Modal);
