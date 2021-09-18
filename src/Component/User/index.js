@@ -18,13 +18,13 @@ class User extends Component {
   };
 
   deleteUser = async (id) => {
-    await axiosFetch(`${url}/${id}`, "DELETE")
+    await axiosFetch(`${url}/${id}`, "DELETE", null)
       .then((result) => {
         alert(result.data.status)
         this.props.deleteUserReducer(id)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 

@@ -42,7 +42,7 @@ const ModalUser = (props) => {
   };
 
   const updateUser = async () => {
-    await axiosFetch(`${url}${inforUser._id}`, "PUT", users)
+    await axiosFetch(`${url}/${inforUser._id}`, "PUT", users)
       .then(res => {
         dispatch(getUpdateStatus_Action(res.status))
         dispatch(getUpdateContact_Action(res.config.data))
@@ -51,7 +51,7 @@ const ModalUser = (props) => {
         myModal.click();
       })
       .catch(err => {
-        console.log(err.response);
+        console.log(err);
         alert(err.response.data.message);
       })
   }

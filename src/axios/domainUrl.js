@@ -1,1 +1,1 @@
-export const url = "http://localhost:8000/api/v1/users/"
+export const url = "https://project-crm-be.herokuapp.com/api/v1/users"
