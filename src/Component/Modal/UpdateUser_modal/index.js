@@ -21,13 +21,15 @@ const ModalUser = (props) => {
   })
 
   useEffect(() => {
+    const { name, email, sdt, address } = inforUser
+    let converSDT = sdt?.toString()
     setUser({
-      name: inforUser.name,
-      email: inforUser.email,
-      sdt: inforUser.sdt,
-      address: inforUser.address,
+      name: name,
+      email: email,
+      sdt: converSDT,
+      address: address,
     })
-  }, [inforUser.address, inforUser.email, inforUser.name, inforUser.sdt])
+  }, [inforUser])
 
   const handleOnchange = async (e) => {
     const { name, value } = e.target;
@@ -51,7 +53,7 @@ const ModalUser = (props) => {
         myModal.click();
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
         alert(err.response.data.message);
       })
   }
