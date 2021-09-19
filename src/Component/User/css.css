@@ -5,7 +5,30 @@
   background-color: #252429;
   margin: 10px 0px;
   padding: 20px 10px;
+  position: relative;
 }
+
+.divUpload {
+  position: absolute;
+  left: 0;
+  top: 40%;
+  position: relative;
+}
+
+.fa-upload {
+  position: absolute;
+  top: 70%;
+  left: -53px;
+}
+
+.inputUpload {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  top: 60%;
+  left: -85px;
+}
+
 .User_container_content {
   display: flex;
   justify-content: space-between;

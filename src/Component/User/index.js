@@ -12,7 +12,19 @@ class User extends Component {
     email: "",
     sdt: "",
     address: "",
+    avatar: {}
   }
+
+  uploadImages = async (e) => {
+    await this.setState({ avatar: e.target.files[0] })
+    let fromData = new FormData()
+    fromData.append("avatar", this.state.avatar)
+    await axiosFetch(`${url}/uploadAvatar/${this.props.dataItem._id}`, "PUT", fromData)
+      .then(user => console.log(user))
+      .catch(err => console.log(err))
+  }
+
+
   clickUser = (data) => {
     this.props.getuserById(data)
   };
@@ -39,12 +51,18 @@ class User extends Component {
         }}
       >
         <div className="User_container_content">
-          <img src="https://static.toiimg.com/thumb/resizemode-4,msid-76729536,width-1200,height-900/76729536.jpg" alt="" />
+          <img src={data.avatar} alt="" />
+          <div className="divUpload" >
+            <i className="fas fa-upload"></i>
+            <div className="inputUpload">
+              <input type="file" className="uploadImages" name="avatar" onChange={this.uploadImages} />
+            </div>
+          </div>
           <div>
             <p className="User_name">{data.name}</p>
             <p className="User_email">{data.email}</p>
           </div>
-        </div>
+        </div >
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -78,7 +96,7 @@ class User extends Component {
             </li>
           </ul>
         </div>
-      </div>
+      </div >
     );
   }
 }

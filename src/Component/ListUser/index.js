@@ -117,7 +117,7 @@ class ListUser extends Component {
                     data-bs-whatever="@mdo"
                   ></i>
                   <div className="User_profile_container_content_avatar">
-                    <img src="https://static.toiimg.com/thumb/resizemode-4,msid-76729536,width-1200,height-900/76729536.jpg" alt="" />
+                    <img src={this.props.dataUserById.avatar} alt="" />
                   </div>
                   <div className="User_profile_container_content_text">
                     <div
