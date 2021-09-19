@@ -4,7 +4,7 @@ import "./css.css";
 import User from "../User";
 import ModalSendMail from "../Modal/SendMailModal";
 import { connect } from "react-redux";
-import { getCreatetatus_Action, getDataUser_Action, getUpdateStatus_Action, searchDataUser_Action } from "../../reducer/getData.action";
+import { getCreatetatus_Action, getDataUser_Action, getUpdateStatus_Action, getUploadStatus_Action, searchDataUser_Action } from "../../reducer/getData.action";
 import { url } from "../../axios/domainUrl";
 
 
@@ -24,13 +24,11 @@ class ListUser extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.statusCodeUpdate === 200) {
+    if (this.props.statusCodeUpdate === 200 || this.props.statusCodeUpload === 200 || this.props.statusCodeCreate === 201) {
       this.fetchGetUser();
       this.props.resetStatusCodeUpdate(0)
-    }
-    if (this.props.statusCodeCreate === 201) {
-      this.fetchGetUser();
       this.props.resetStatusCodeCreate(0)
+      this.props.resetStatusCodeUpdate(0)
     }
   }
 
@@ -117,7 +115,7 @@ class ListUser extends Component {
                     data-bs-whatever="@mdo"
                   ></i>
                   <div className="User_profile_container_content_avatar">
-                    <img src={this.props.dataUserById.avatar} alt="" />
+                    <img src={this.props.dataUserById.avatar ? this.props.dataUserById.avatar : "https://static.toiimg.com/thumb/resizemode-4,msid-76729536,width-1200,height-900/76729536.jpg"} alt="" />
                   </div>
                   <div className="User_profile_container_content_text">
                     <div
@@ -169,6 +167,9 @@ const mapDispacthToProps = (dispacth) => {
     },
     resetStatusCodeCreate: (data) => {
       dispacth(getCreatetatus_Action(data))
+    },
+    resetStatusCodeUpload: (data) => {
+      dispacth(getUploadStatus_Action(data))
     }
   }
 }
@@ -178,7 +179,8 @@ const mapStateToProps = (state) => {
     dataUsers: state.userReducer.dataUsers,
     dataUserById: state.userReducer.dataUserById,
     statusCodeUpdate: state.userReducer.statusCode,
-    statusCodeCreate: state.userReducer.statusCodeCreate
+    statusCodeCreate: state.userReducer.statusCodeCreate,
+    statusCodeUpload: state.userReducer.statusCodeUpload
   }
 }
 

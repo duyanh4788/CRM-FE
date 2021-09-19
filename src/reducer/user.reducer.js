@@ -1,4 +1,4 @@
-import { DELETE_USER_CRM, GET_UPDATE_USER_CRM, GET_USER_BYID_CRM, GET_USER_CRM, SEARCH_USER_CRM, STATUS_CREATE_USER, STATUS_UPDATE_USER, UPDATE_CONTACT } from "./valiable.reducer";
+import { DELETE_USER_CRM, GET_UPDATE_USER_CRM, GET_USER_BYID_CRM, GET_USER_CRM, SEARCH_USER_CRM, STATUS_CREATE_USER, STATUS_UPDATE_USER, STATUS_UPLOAD_USER, UPDATE_CONTACT, UPDATE_CONTACT_AVATA } from "./valiable.reducer";
 
 const initialState = {
     dataUserUpdate: {},
@@ -6,6 +6,7 @@ const initialState = {
     dataUserById: undefined,
     statusCode: 0,
     statusCodeCreate: 0,
+    statusCodeUpload: 0,
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -22,8 +23,16 @@ export const userReducer = (state = initialState, action) => {
             state.statusCodeCreate = action.data;
             return { ...state }
         }
+        case STATUS_UPLOAD_USER: {
+            state.statusCodeUpload = action.data;
+            return { ...state }
+        }
         case UPDATE_CONTACT: {
             state.dataUserById = JSON.parse(action.data)
+            return { ...state }
+        }
+        case UPDATE_CONTACT_AVATA: {
+            state.dataUserById = action.data
             return { ...state }
         }
         case GET_USER_BYID_CRM: {

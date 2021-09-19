@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./css.css";
 import axiosFetch from "../../axios";
 import { connect } from "react-redux";
-import { deleteDataUser_Action, getDataUserByID_Action, getUpdateDataUser_Action } from "../../reducer/getData.action";
+import { deleteDataUser_Action, getDataUserByID_Action, getUpdateContactAvatar_Action, getUpdateDataUser_Action, getUploadStatus_Action } from "../../reducer/getData.action";
 import { url } from "../../axios/domainUrl";
 
 class User extends Component {
@@ -20,7 +20,11 @@ class User extends Component {
     let fromData = new FormData()
     fromData.append("avatar", this.state.avatar)
     await axiosFetch(`${url}/uploadAvatar/${this.props.dataItem._id}`, "PUT", fromData)
-      .then(user => console.log(user))
+      .then((user) => {
+        console.log(user.data);
+        this.props.uploadAvatarUserReducer(user.data)
+        this.props.upLoadStatusReducer(user.status)
+      })
       .catch(err => console.log(err))
   }
 
@@ -51,7 +55,7 @@ class User extends Component {
         }}
       >
         <div className="User_container_content">
-          <img src={data.avatar} alt="" />
+          <img src={data.avatar ? data.avatar : "https://static.toiimg.com/thumb/resizemode-4,msid-76729536,width-1200,height-900/76729536.jpg"} alt="" />
           <div className="divUpload" >
             <i className="fas fa-upload"></i>
             <div className="inputUpload">
@@ -111,6 +115,12 @@ const mapDispacthToProps = (dispacth) => {
     },
     deleteUserReducer: (id) => {
       dispacth(deleteDataUser_Action(id))
+    },
+    upLoadStatusReducer: (code) => {
+      dispacth(getUploadStatus_Action(code))
+    },
+    uploadAvatarUserReducer: (data) => {
+      dispacth(getUpdateContactAvatar_Action(data))
     }
   }
 }

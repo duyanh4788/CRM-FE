@@ -22,11 +22,13 @@
 }
 
 .inputUpload {
-  cursor: pointer;
   opacity: 0;
   position: absolute;
   top: 60%;
   left: -85px;
+}
+.uploadImages {
+  width: 75%;
 }
 
 .User_container_content {
