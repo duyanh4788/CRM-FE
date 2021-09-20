@@ -28,7 +28,7 @@ export const userReducer = (state = initialState, action) => {
             return { ...state }
         }
         case UPDATE_CONTACT: {
-            state.dataUserById = JSON.parse(action.data)
+            state.dataUserById = action.data
             return { ...state }
         }
         case UPDATE_CONTACT_AVATA: {

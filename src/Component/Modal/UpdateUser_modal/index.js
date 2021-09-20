@@ -47,7 +47,7 @@ const ModalUser = (props) => {
     await axiosFetch(`${url}/${inforUser._id}`, "PUT", users)
       .then(res => {
         dispatch(getUpdateStatus_Action(res.status))
-        dispatch(getUpdateContact_Action(res.config.data))
+        dispatch(getUpdateContact_Action(res.data.data.userUpdate))
         alert(res.data.status);
         const myModal = document.getElementById("btn-close2");
         myModal.click();
