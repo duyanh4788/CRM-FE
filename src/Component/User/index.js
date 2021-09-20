@@ -21,9 +21,10 @@ class User extends Component {
     fromData.append("avatar", this.state.avatar)
     await axiosFetch(`${url}/uploadAvatar/${this.props.dataItem._id}`, "PUT", fromData)
       .then((user) => {
-        console.log(user.data);
         this.props.uploadAvatarUserReducer(user.data)
         this.props.upLoadStatusReducer(user.status)
+        let formUpload = document.getElementById("formUpload")
+        formUpload.reset()
       })
       .catch(err => console.log(err))
   }
@@ -59,7 +60,9 @@ class User extends Component {
           <div className="divUpload" >
             <i className="fas fa-upload"></i>
             <div className="inputUpload">
-              <input type="file" className="uploadImages" name="avatar" onChange={this.uploadImages} />
+              <form id="formUpload">
+                <input type="file" className="uploadImages" name="avatar" onChange={this.uploadImages} />
+              </form>
             </div>
           </div>
           <div>

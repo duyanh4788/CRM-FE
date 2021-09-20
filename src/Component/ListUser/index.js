@@ -28,7 +28,7 @@ class ListUser extends Component {
       this.fetchGetUser();
       this.props.resetStatusCodeUpdate(0)
       this.props.resetStatusCodeCreate(0)
-      this.props.resetStatusCodeUpdate(0)
+      this.props.resetStatusCodeUpload(0)
     }
   }
 
