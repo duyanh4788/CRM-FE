@@ -1,15 +1,26 @@
 import React, { Component } from "react";
 import "./css.css";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import axiosFetch from "../../../axios";
 import { url } from "../../../axios/domainUrl";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+
 export default class ModalSendMail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       header: "",
-      message: "",
       email: "",
+      message: EditorState.createEmpty(),
     };
+  }
+
+  onEditorStateChange = (message) => {
+    this.setState({
+      message,
+    })
   }
 
   handleOnchange = (e) => {
@@ -20,21 +31,23 @@ export default class ModalSendMail extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
+    // eslint-disable-next-line react/no-direct-mutation-state
+    this.state.message = draftToHtml(convertToRaw(this.state.message.getCurrentContent()))
     this.sendMailUser();
   };
   sendMailUser = () => {
-    axiosFetch(`${url}`, "POST", this.state)
-    .then((result) => {
-      const myModal = document.getElementById("btn-close");
-      alert("Gửi mail Thành Công");
-      document.getElementById("myform1").reset();
-      myModal.click();
-    })
-    .catch((err) => {
-      console.log(err);
-      alert("Gửi mail Không thành công");
-      document.getElementById("myform1").reset();
-    });
+    axiosFetch(`${url}/sendmail`, "POST", this.state)
+      .then((result) => {
+        const myModal = document.getElementById("btn-close");
+        alert("Gửi mail Thành Công");
+        document.getElementById("myform1").reset();
+        myModal.click();
+      })
+      .catch((err) => {
+        console.log(err.response);
+        alert("Gửi mail Không thành công");
+        document.getElementById("myform1").reset();
+      });
   };
   render() {
     return (
@@ -84,13 +97,20 @@ export default class ModalSendMail extends Component {
                       >
                         Message:
                       </label>
-                      <input
+                      <Editor
+                        editorState={this.state.message}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        onEditorStateChange={this.onEditorStateChange}
+                      />;
+                      {/* <input
                         type="text"
                         className="form-control"
                         id="recipient-name"
                         name="message"
                         onChange={this.handleOnchange}
-                      />
+                      /> */}
                     </div>
 
                     <div className="modal-footer">
