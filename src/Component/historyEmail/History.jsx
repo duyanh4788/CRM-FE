@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axiosFetch from '../../axios'
 import "./history.css"
 import dayjs from "dayjs";
+import { url } from '../../axios/domainUrl';
 
 function History(props) {
 
     const [historyEmail, setHistory] = useState([])
 
     useEffect(() => {
-        axiosFetch("https://drm-vuduyanh.herokuapp.com/historyEmail", "GET", null)
+        axiosFetch(`${url}/historyEmail`, "GET", null)
             .then(history => {
                 setHistory(history.data.data.email)
             })
@@ -16,6 +17,7 @@ function History(props) {
                 console.log(err);
             })
     }, [])
+    
     return (
         <div className="ModalUser">
             <div
