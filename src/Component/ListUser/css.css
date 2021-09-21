@@ -142,6 +142,12 @@ body {
 .fa-share-square:hover {
   color: darkblue;
 }
+.fa-history {
+  position: absolute;
+  right: 35px;
+  top: 10px;
+  cursor: pointer;
+}
 @keyframes ani {
   0% {
     transform: translateY(-100px);

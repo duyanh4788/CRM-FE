@@ -6,6 +6,7 @@ import ModalSendMail from "../Modal/SendMailModal";
 import { connect } from "react-redux";
 import { getCreatetatus_Action, getDataUser_Action, getUpdateStatus_Action, getUploadStatus_Action, searchDataUser_Action } from "../../reducer/getData.action";
 import { url } from "../../axios/domainUrl";
+import History from "../historyEmail/History";
 
 
 class ListUser extends Component {
@@ -106,8 +107,13 @@ class ListUser extends Component {
           {this.props.dataUserById ?
             <>
               <ModalSendMail dataSendMail={this.props.dataUserById.email} />
+              <History emailUser={this.props.dataUserById.email} />
               <div className="User_profile_container">
                 <div className="User_profile_container_content">
+                  <i className="fas fa-history"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal3"
+                    data-bs-whatever="@mdo"></i>
                   <i
                     className="fas fa-share-square "
                     data-bs-toggle="modal"
