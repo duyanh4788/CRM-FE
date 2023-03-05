@@ -1,1 +1,1 @@
-export const url = "https://drm-vuduyanh.herokuapp.com/api/v1/users"
+export const url = "https://crm-be.onrender.com/api/v1/users"
